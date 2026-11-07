@@ -908,14 +908,14 @@
             </div>
         </div>
 
-        <!-- მთავარი ნავიგაცია -->
+        <!-- მთავარი ნავიგაცია (შიდა სექციებზე გადასვლა) -->
         <nav id="main-nav" aria-label="მთავარი ნავიგაცია">
             <ul>
-                <li><a href="index.html" class="active" aria-current="page">ჩემ შესახებ</a></li>
-                <li><a href="skills.html">უნარები</a></li>
-                <li><a href="projects.html">პროექტები</a></li>
-                <li><a href="goals.html">სასწავლო მიზნები</a></li>
-                <li><a href="contact.html">კონტაქტი</a></li>
+                <li><a href="#about" class="active">ჩემ შესახებ</a></li>
+                <li><a href="#skills">უნარები</a></li>
+                <li><a href="#projects">პროექტები</a></li>
+                <li><a href="#goals">სასწავლო მიზნები</a></li>
+                <li><a href="#contact">კონტაქტი</a></li>
             </ul>
         </nav>
     </header>
@@ -1216,9 +1216,31 @@
 
                     navLinks.forEach(function (link) {
                         link.addEventListener('click', function () {
+                            navLinks.forEach(function (l) { l.classList.remove('active'); });
+                            link.classList.add('active');
                             closeMobileNav();
                         });
                     });
+
+                    // სქროლვისას შესაბამისი ღილაკის ავტომატური გააქტიურება
+                    var sections = document.querySelectorAll('main section[id]');
+                    window.addEventListener('scroll', function () {
+                        var scrollPos = window.scrollY + 120;
+                        sections.forEach(function (sec) {
+                            var top = sec.offsetTop;
+                            var height = sec.offsetHeight;
+                            var id = sec.getAttribute('id');
+                            if (scrollPos >= top && scrollPos < top + height) {
+                                navLinks.forEach(function (l) {
+                                    if (l.getAttribute('href') === '#' + id) {
+                                        l.classList.add('active');
+                                    } else {
+                                        l.classList.remove('active');
+                                    }
+                                });
+                            }
+                        });
+                    }, { passive: true });
 
                     document.addEventListener('click', function (e) {
                         if (!mainNav.contains(e.target) && !burgerBtn.contains(e.target)) {
