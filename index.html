@@ -8,7 +8,6 @@
 
     <!-- ==========================================================================
          ყველა CSS სტილი ჩაშენებულია პირდაპირ ამ index.html ფაილში (Internal CSS),
-         რათა GitHub-ზე ან ტელეფონზე ცალკე გახსნის დროსაც სრულად გამოჩნდეს:
          - თეთრი და ყავისფერი (#53392c) ფერთა პალიტრა;
          - Light და Dark თემები;
          - სრული რესფონსიული დიზაინი და მობილური ბურგერ მენიუს სტილები.
@@ -859,6 +858,41 @@
                 transform: translateY(0);
             }
         }
+
+        /* სექციის ბოლოში არსებული 'ყველა სექციის ჩვენება' ღილაკი */
+        .section-footer-nav {
+            margin-top: 25px;
+            padding-top: 18px;
+            border-top: 1px dashed var(--border-accent);
+            text-align: center;
+        }
+
+        .btn-show-all {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--btn-secondary-bg);
+            color: var(--btn-secondary-text);
+            border: 1px solid var(--card-border);
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+        }
+
+        .btn-show-all:hover {
+            background-color: var(--accent-color);
+            color: var(--btn-text);
+            border-color: var(--accent-color);
+            transform: translateY(-1px);
+        }
+
+        .btn-show-all:active {
+            transform: translateY(0);
+        }
     </style>
 
     <!-- გარე CSS და JS ფაილები (თუ ცალკე ფაილებიც ატვირთულია) -->
@@ -908,14 +942,15 @@
             </div>
         </div>
 
-        <!-- მთავარი ნავიგაცია (შიდა სექციებზე გადასვლა) -->
+        <!-- მთავარი ნავიგაცია (სექციების გაფილტვრა / ჩვენება) -->
         <nav id="main-nav" aria-label="მთავარი ნავიგაცია">
             <ul>
-                <li><a href="#about" class="active">ჩემ შესახებ</a></li>
-                <li><a href="#skills">უნარები</a></li>
-                <li><a href="#projects">პროექტები</a></li>
-                <li><a href="#goals">სასწავლო მიზნები</a></li>
-                <li><a href="#contact">კონტაქტი</a></li>
+                <li><a href="#all" class="nav-filter-btn active" data-filter="all">ყველა</a></li>
+                <li><a href="#about" class="nav-filter-btn" data-filter="about">ჩემ შესახებ</a></li>
+                <li><a href="#skills" class="nav-filter-btn" data-filter="skills">უნარები</a></li>
+                <li><a href="#projects" class="nav-filter-btn" data-filter="projects">პროექტები</a></li>
+                <li><a href="#goals" class="nav-filter-btn" data-filter="goals">სასწავლო მიზნები</a></li>
+                <li><a href="#contact" class="nav-filter-btn" data-filter="contact">კონტაქტი</a></li>
             </ul>
         </nav>
     </header>
@@ -948,6 +983,9 @@
             <blockquote>
                 <p><em>„ყველა გამოცდილი დეველოპერი ოდესღაც დამწყები იყო.“</em></p>
             </blockquote>
+            <div class="section-footer-nav" style="display: none;">
+                <button type="button" class="btn-show-all">← ყველა სექციის ჩვენება</button>
+            </div>
         </section>
 
         <hr>
@@ -986,6 +1024,9 @@
                     <li>ფორმის ვალიდაციები და ტიპები</li>
                 </ul>
             </details>
+            <div class="section-footer-nav" style="display: none;">
+                <button type="button" class="btn-show-all">← ყველა სექციის ჩვენება</button>
+            </div>
         </section>
 
         <hr>
@@ -1019,6 +1060,9 @@
                     <p>სტატუსი: <strong>მიმდინარე</strong></p>
                 </footer>
             </article>
+            <div class="section-footer-nav" style="display: none;">
+                <button type="button" class="btn-show-all">← ყველა სექციის ჩვენება</button>
+            </div>
         </section>
 
         <hr>
@@ -1065,6 +1109,9 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="section-footer-nav" style="display: none;">
+                <button type="button" class="btn-show-all">← ყველა სექციის ჩვენება</button>
             </div>
         </section>
 
@@ -1115,6 +1162,9 @@
                     </div>
                 </fieldset>
             </form>
+            <div class="section-footer-nav" style="display: none;">
+                <button type="button" class="btn-show-all">← ყველა სექციის ჩვენება</button>
+            </div>
         </section>
 
     </main>
@@ -1214,33 +1264,117 @@
                         }
                     }
 
+                    // ==========================================
+                    // 3. სექციების გაფილტვრა / ცალკე ჩვენება
+                    // ==========================================
+                    var allSections = document.querySelectorAll('main section');
+                    var footerNavButtons = document.querySelectorAll('.section-footer-nav');
+                    var brandLink = document.querySelector('.brand-link');
+
+                    function showSection(filter) {
+                        var target = (!filter || filter === 'all' || filter === '#all') ? 'all' : filter.replace('#', '');
+
+                        if (target === 'all') {
+                            // ყველა სექციის ერთად ჩვენება (საწყისი ხედი)
+                            allSections.forEach(function (sec) {
+                                sec.style.display = 'block';
+                            });
+
+                            // ყველა სექციის ბოლოს ღილაკის დამალვა
+                            footerNavButtons.forEach(function (footerBox) {
+                                footerBox.style.display = 'none';
+                            });
+
+                            // აქტიური ღილაკის მონიშვნა 'ყველა'
+                            navLinks.forEach(function (link) {
+                                if (link.getAttribute('data-filter') === 'all') {
+                                    link.classList.add('active');
+                                } else {
+                                    link.classList.remove('active');
+                                }
+                            });
+
+                            try {
+                                history.replaceState(null, '', '#all');
+                            } catch (err) {}
+                        } else {
+                            var selectedSection = document.getElementById(target);
+                            if (selectedSection) {
+                                // მხოლოდ არჩეული სექციის ჩვენება, დანარჩენის დამალვა
+                                allSections.forEach(function (sec) {
+                                    if (sec.id === target) {
+                                        sec.style.display = 'block';
+                                    } else {
+                                        sec.style.display = 'none';
+                                    }
+                                });
+
+                                // მხოლოდ ამ სექციაში '← ყველა სექციის ჩვენება' ღილაკის გამოჩენა
+                                footerNavButtons.forEach(function (footerBox) {
+                                    if (footerBox.closest('section') === selectedSection) {
+                                        footerBox.style.display = 'block';
+                                    } else {
+                                        footerBox.style.display = 'none';
+                                    }
+                                });
+
+                                // ნავიგაციის აქტიური ღილაკის განახლება
+                                navLinks.forEach(function (link) {
+                                    if (link.getAttribute('data-filter') === target) {
+                                        link.classList.add('active');
+                                    } else {
+                                        link.classList.remove('active');
+                                    }
+                                });
+
+                                try {
+                                    history.replaceState(null, '', '#' + target);
+                                } catch (err) {}
+                            }
+                        }
+
+                        // გვერდის თავში რბილად დაბრუნება
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+
+                    // ნავიგაციის ღილაკებზე დაჭერის დამუშავება
                     navLinks.forEach(function (link) {
-                        link.addEventListener('click', function () {
-                            navLinks.forEach(function (l) { l.classList.remove('active'); });
-                            link.classList.add('active');
+                        link.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            var filter = link.getAttribute('data-filter');
+                            showSection(filter);
                             closeMobileNav();
                         });
                     });
 
-                    // სქროლვისას შესაბამისი ღილაკის ავტომატური გააქტიურება
-                    var sections = document.querySelectorAll('main section[id]');
-                    window.addEventListener('scroll', function () {
-                        var scrollPos = window.scrollY + 120;
-                        sections.forEach(function (sec) {
-                            var top = sec.offsetTop;
-                            var height = sec.offsetHeight;
-                            var id = sec.getAttribute('id');
-                            if (scrollPos >= top && scrollPos < top + height) {
-                                navLinks.forEach(function (l) {
-                                    if (l.getAttribute('href') === '#' + id) {
-                                        l.classList.add('active');
-                                    } else {
-                                        l.classList.remove('active');
-                                    }
-                                });
-                            }
+                    // '← ყველა სექციის ჩვენება' ღილაკებზე დაჭერა
+                    document.querySelectorAll('.btn-show-all').forEach(function (btn) {
+                        btn.addEventListener('click', function () {
+                            showSection('all');
                         });
-                    }, { passive: true });
+                    });
+
+                    // ჰედერის სახელზე (საბა მჭედლიშვილი) დაჭერისას ყველა სექციის გამოჩენა
+                    if (brandLink) {
+                        brandLink.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            showSection('all');
+                        });
+                    }
+
+                    // ბრაუზერის მისამართის ჰეშის შემოწმება ჩატვირთვისას
+                    var currentHash = window.location.hash ? window.location.hash.replace('#', '') : 'all';
+                    if (['about', 'skills', 'projects', 'goals', 'contact'].indexOf(currentHash) !== -1) {
+                        showSection(currentHash);
+                    } else {
+                        showSection('all');
+                    }
+
+                    // ბრაუზერის Back/Forward ისრებზე დაჭერისას
+                    window.addEventListener('hashchange', function () {
+                        var hash = window.location.hash ? window.location.hash.replace('#', '') : 'all';
+                        showSection(hash);
+                    });
 
                     document.addEventListener('click', function (e) {
                         if (!mainNav.contains(e.target) && !burgerBtn.contains(e.target)) {
