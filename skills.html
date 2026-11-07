@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="საბა მჭედლიშვილის ტექნიკური უნარები - Frontend დეველოპმენტი">
+    <title>უნარები | საბა მჭედლიშვილი</title>
+    <!-- დაკავშირებული CSS სტილები და JavaScript ფაილი -->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- საიტის მთავარი ჰედერი და ნავიგაცია -->
+    <header id="header">
+        <div class="header-top">
+            <div class="header-titles">
+                <h1><a href="index.html" class="brand-link">საბა მჭედლიშვილი</a></h1>
+                <p class="subtitle"><strong>დამწყები ვებ-დეველოპერი (16 წლის) | Frontend ენთუზიასტი</strong></p>
+            </div>
+            
+            <!-- ჰედერის მართვის ღილაკები: თემის გადამრთველი და ბურგერ მენიუ -->
+            <div class="header-controls">
+                <!-- Light / Dark თემის გადასართველი ღილაკი -->
+                <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="თემის შეცვლა (Light / Dark)" title="თემის შეცვლა">
+                    <span class="theme-icon sun-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </span>
+                    <span class="theme-icon moon-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </span>
+                </button>
+
+                <!-- ბურგერ მენიუს ღილაკი (მობილურის რეზოლუციაზე) -->
+                <button class="burger-btn" id="burger-btn" type="button" aria-label="ნავიგაციის მენიუს გახსნა" aria-expanded="false" aria-controls="main-nav">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- მთავარი ნავიგაცია -->
+        <nav id="main-nav" aria-label="მთავარი ნავიგაცია">
+            <ul>
+                <li><a href="index.html">ჩემ შესახებ</a></li>
+                <li><a href="skills.html" class="active" aria-current="page">უნარები</a></li>
+                <li><a href="projects.html">პროექტები</a></li>
+                <li><a href="goals.html">სასწავლო მიზნები</a></li>
+                <li><a href="contact.html">კონტაქტი</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ძირითადი შიგთავსი: უნარები -->
+    <main>
+        <section id="skills">
+            <h2>ტექნიკური უნარები (სასწავლო პროგრესი)</h2>
+            <ul class="skills-list">
+                <li>
+                    <span class="skill-title"><strong>HTML5 &amp; Semantic Web:</strong></span>
+                    <progress value="45" max="100">45%</progress> 
+                    <span class="skill-desc">(45% - საფუძვლიანად ვსწავლობ სემანტიკურ თეგებს)</span>
+                </li>
+                <li>
+                    <span class="skill-title"><strong>CSS3 &amp; Web Design:</strong></span>
+                    <progress value="25" max="100">25%</progress> 
+                    <span class="skill-desc">(25% - ვიზუალური გაფორმების საწყისები)</span>
+                </li>
+                <li>
+                    <span class="skill-title"><strong>JavaScript (საფუძვლები):</strong></span>
+                    <progress value="15" max="100">15%</progress> 
+                    <span class="skill-desc">(15% - ლოგიკის პირველი ნაბიჯები)</span>
+                </li>
+            </ul>
+
+            <details>
+                <summary>დამატებითი მიმართულებები, რასაც განვიხილავ (დააჭირეთ გასახსნელად)</summary>
+                <ul>
+                    <li>Responsive Web Design (ადაპტური დიზაინი)</li>
+                    <li>Web Accessibility (სემანტიკური ხელმისაწვდომობა)</li>
+                    <li>Git &amp; GitHub (კოდის შენახვა და გაზიარება)</li>
+                </ul>
+            </details>
+        </section>
+    </main>
+
+    <!-- საიტის ფუტერი -->
+    <footer id="footer">
+        <p>&copy; 2026 საბა მჭედლიშვილი. ყველა უფლება დაცულია.</p>
+        <p><a href="#header">დაბრუნება გვერდის თავში</a></p>
+    </footer>
+
+</body>
+</html>

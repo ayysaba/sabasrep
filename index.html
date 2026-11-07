@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="საბა მჭედლიშვილის პერსონალური პორტფოლიო - დამწყები ვებ-დეველოპერი">
+    <title>პორტფოლიო | საბა მჭედლიშვილი</title>
+
+    <!-- ==========================================================================
+         ყველა სტილი ჩაშენებულია პირდაპირ ამ index.html ფაილში (Internal CSS),
+         რათა ტელეფონზე ცალკე გაგზავნის დროსაც სრულყოფილად გაიხსნას სტილებითა და თემებით!
+         ========================================================================== -->
+    <style>
+        /* CSS ცვლადები: Light და Dark თემები */
+        :root {
+            /* Light Theme (ნაგულისხმევი) */
+            --bg-color: #faf7f2;
+            --card-bg: #ffffff;
+            --card-border: #eee5dc;
+            --text-primary: #53392c;
+            --text-secondary: #7d6b5e;
+            --heading-color: #53392c;
+            --accent-color: #53392c;
+            --accent-hover: #3d281e;
+            --btn-text: #ffffff;
+            --btn-secondary-bg: #eee4d9;
+            --btn-secondary-text: #53392c;
+            --btn-secondary-hover: #dfd2c4;
+            --nav-bg: #f7f2ec;
+            --nav-border: #eadfd4;
+            --nav-text: #53392c;
+            --card-shadow: 0 4px 14px rgba(83, 57, 44, 0.05);
+            --border-accent: #ecdcd0;
+            --item-bg: #fbf8f4;
+            --item-border: #ece2d7;
+            --input-bg: #ffffff;
+            --input-border: #d5c6b7;
+            --input-focus-shadow: rgba(83, 57, 44, 0.15);
+            --progress-bg: #eadecf;
+            --progress-bar: #53392c;
+            --table-th-bg: #f5ede4;
+            --table-border: #eee5dc;
+            --table-hover: #faf5ee;
+            --blockquote-bg: #faf6f1;
+            --fieldset-bg: #fdfbf8;
+        }
+
+        /* Dark Theme */
+        [data-theme="dark"], body.dark-theme {
+            --bg-color: #171412;
+            --card-bg: #231f1c;
+            --card-border: #38312b;
+            --text-primary: #f5eee8;
+            --text-secondary: #b8a89a;
+            --heading-color: #f5eee8;
+            --accent-color: #c4956d;
+            --accent-hover: #d9aa82;
+            --btn-text: #171412;
+            --btn-secondary-bg: #332c26;
+            --btn-secondary-text: #f5eee8;
+            --btn-secondary-hover: #423932;
+            --nav-bg: #2c2621;
+            --nav-border: #423a33;
+            --nav-text: #f5eee8;
+            --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+            --border-accent: #3d352d;
+            --item-bg: #1c1815;
+            --item-border: #38312b;
+            --input-bg: #1a1614;
+            --input-border: #4a4037;
+            --input-focus-shadow: rgba(196, 149, 109, 0.25);
+            --progress-bg: #362e27;
+            --progress-bar: #c4956d;
+            --table-th-bg: #2c2520;
+            --table-border: #3d352d;
+            --table-hover: #29231e;
+            --blockquote-bg: #1e1a17;
+            --fieldset-bg: #1c1815;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px 0;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        header, main, footer {
+            width: 90%;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            padding: 1.8rem 2rem;
+            border-radius: 14px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-shadow);
+            margin-bottom: 25px;
+            position: relative;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            text-align: left;
+        }
+
+        .header-titles {
+            flex: 1;
+            min-width: 0;
+        }
+
+        h1 {
+            color: var(--heading-color);
+            font-size: 2.1rem;
+            margin-top: 0;
+            margin-bottom: 0.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .brand-link {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .brand-link:hover {
+            opacity: 0.85;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.98rem;
+            transition: color 0.3s ease;
+        }
+
+        .subtitle strong {
+            color: var(--accent-color);
+            transition: color 0.3s ease;
+        }
+
+        h2 {
+            color: var(--heading-color);
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--border-accent);
+            padding-bottom: 8px;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        h3 {
+            color: var(--heading-color);
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        hr {
+            display: none;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        /* თემის გადამრთველი ღილაკი */
+        .theme-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 40px;
+            background-color: var(--nav-bg);
+            border: 1px solid var(--nav-border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.15s ease, color 0.25s ease;
+            padding: 0;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle-btn:hover {
+            background-color: var(--btn-secondary-hover);
+            transform: scale(1.05);
+        }
+
+        .theme-toggle-btn:active {
+            transform: scale(0.95);
+        }
+
+        .theme-toggle-btn:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        .theme-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sun-icon {
+            display: none;
+        }
+        .moon-icon {
+            display: inline-flex;
+        }
+
+        [data-theme="dark"] .sun-icon,
+        body.dark-theme .sun-icon {
+            display: inline-flex;
+            color: #f5c542;
+        }
+
+        [data-theme="dark"] .moon-icon,
+        body.dark-theme .moon-icon {
+            display: none;
+        }
+
+        /* ბურგერ მენიუს ღილაკი */
+        .burger-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 44px;
+            height: 40px;
+            padding: 9px 8px;
+            background-color: var(--nav-bg);
+            border: 1px solid var(--nav-border);
+            border-radius: 8px;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            user-select: none;
+        }
+
+        .burger-btn:hover {
+            background-color: var(--btn-secondary-hover);
+        }
+
+        .burger-btn:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        .burger-line {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-primary);
+            border-radius: 3px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                        opacity 0.2s ease, 
+                        background-color 0.3s ease;
+            transform-origin: center;
+        }
+
+        .burger-btn.is-active .burger-line:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+            background-color: var(--accent-color);
+        }
+
+        .burger-btn.is-active .burger-line:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .burger-btn.is-active .burger-line:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+            background-color: var(--accent-color);
+        }
+
+        /* ნავიგაცია */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        nav a {
+            display: inline-block;
+            color: var(--nav-text);
+            text-decoration: none;
+            background-color: var(--nav-bg);
+            border: 1px solid var(--nav-border);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        nav a:hover, nav a:focus-visible {
+            background-color: var(--accent-color);
+            color: var(--btn-text);
+            border-color: var(--accent-color);
+            outline: none;
+        }
+
+        nav a.active {
+            background-color: var(--accent-color);
+            color: var(--btn-text);
+            border-color: var(--accent-color);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* სექციები */
+        section {
+            background-color: var(--card-bg);
+            padding: 24px;
+            margin-bottom: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-shadow);
+            scroll-margin-top: 20px;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        figure {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        figure img {
+            width: 180px;
+            height: 180px;
+            max-width: 100%;
+            border-radius: 50%;
+            border: 4px solid var(--card-border);
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            transition: border-color 0.3s ease;
+        }
+
+        figcaption {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 8px;
+            transition: color 0.3s ease;
+        }
+
+        blockquote {
+            background-color: var(--blockquote-bg);
+            border-left: 4px solid var(--accent-color);
+            margin: 15px 0;
+            padding: 12px 20px;
+            font-style: italic;
+            color: var(--text-primary);
+            border-radius: 0 8px 8px 0;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* უნარები */
+        .skills-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .skills-list li {
+            background-color: var(--item-bg);
+            border: 1px solid var(--item-border);
+            border-radius: 8px;
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .skill-title {
+            color: var(--heading-color);
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .skills-list progress {
+            width: 100%;
+            height: 16px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: none;
+            background-color: var(--progress-bg);
+        }
+
+        .skills-list progress::-webkit-progress-bar {
+            background-color: var(--progress-bg);
+        }
+
+        .skills-list progress::-webkit-progress-value {
+            background-color: var(--progress-bar);
+        }
+
+        .skills-list progress::-moz-progress-bar {
+            background-color: var(--progress-bar);
+        }
+
+        .skill-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        details {
+            background-color: var(--item-bg);
+            border: 1px solid var(--item-border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        details summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--accent-color);
+            transition: color 0.3s ease;
+        }
+
+        details ul {
+            margin: 10px 0 0 20px;
+            padding: 0;
+        }
+
+        details li {
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        /* პროექტების ბარათები */
+        article {
+            background-color: var(--item-bg);
+            border: 1px solid var(--item-border);
+            border-left: 4px solid var(--accent-color);
+            padding: 16px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        article header p {
+            margin: 0 0 8px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        /* ცხრილი */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--item-border);
+        }
+
+        table {
+            width: 100%;
+            min-width: 500px;
+            border-collapse: collapse;
+            background-color: var(--card-bg);
+            transition: background-color 0.3s ease;
+        }
+
+        caption {
+            padding: 10px;
+            font-size: 1.05rem;
+            color: var(--heading-color);
+            caption-side: top;
+            text-align: left;
+            transition: color 0.3s ease;
+        }
+
+        th, td {
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--table-border);
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+
+        th {
+            background-color: var(--table-th-bg);
+            color: var(--heading-color);
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--text-primary);
+        }
+
+        tbody tr:hover {
+            background-color: var(--table-hover);
+        }
+
+        /* ფორმა და ღილაკები */
+        .contact-info {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .contact-info li {
+            margin-bottom: 8px;
+        }
+
+        .contact-info a {
+            color: var(--accent-color);
+            text-decoration: none;
+            word-break: break-all;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        fieldset {
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 20px;
+            background-color: var(--fieldset-bg);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        legend {
+            color: var(--accent-color);
+            font-weight: bold;
+            padding: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 12px;
+            margin-top: 6px;
+            border: 1px solid var(--input-border);
+            border-radius: 6px;
+            background-color: var(--input-bg);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s, background-color 0.3s ease, color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px var(--input-focus-shadow);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: var(--btn-text);
+            border: none;
+            padding: 11px 24px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s, color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button[type="reset"] {
+            background-color: var(--btn-secondary-bg);
+            color: var(--btn-secondary-text);
+        }
+
+        button[type="reset"]:hover {
+            background-color: var(--btn-secondary-hover);
+        }
+
+        /* ფუტერი */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* რესფონსიული მედია ქუერები */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 12px 0;
+            }
+
+            header, main, footer {
+                width: 94%;
+            }
+
+            header {
+                padding: 1.25rem 1rem;
+                margin-bottom: 18px;
+            }
+
+            .header-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                text-align: left;
+                gap: 12px;
+            }
+
+            .header-titles {
+                flex: 1;
+                min-width: 0;
+            }
+
+            h1 {
+                font-size: 1.55rem;
+                margin-bottom: 4px;
+                word-break: break-word;
+            }
+
+            .subtitle {
+                font-size: 0.88rem;
+                line-height: 1.4;
+            }
+
+            .burger-btn {
+                display: flex;
+            }
+
+            #main-nav {
+                display: none;
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid var(--border-accent);
+            }
+
+            #main-nav.is-open {
+                display: block;
+                animation: slideDown 0.25s ease-out;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 8px;
+                margin: 0;
+                width: 100%;
+            }
+
+            nav a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 12px 16px;
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 18px 16px;
+                margin-bottom: 18px;
+            }
+
+            h2 {
+                font-size: 1.35rem;
+            }
+
+            figure img {
+                width: 150px;
+                height: 150px;
+            }
+
+            article {
+                padding: 14px 16px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            body {
+                padding: 8px 0;
+            }
+
+            header, main, footer {
+                width: 95%;
+            }
+
+            header {
+                padding: 1rem;
+                border-radius: 10px;
+            }
+
+            h1 {
+                font-size: 1.35rem;
+            }
+
+            .subtitle {
+                font-size: 0.82rem;
+            }
+
+            .theme-toggle-btn {
+                width: 38px;
+                height: 38px;
+            }
+
+            .burger-btn {
+                width: 38px;
+                height: 38px;
+                padding: 8px 7px;
+            }
+
+            section {
+                padding: 14px 12px;
+                border-radius: 10px;
+                margin-bottom: 14px;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            figure img {
+                width: 130px;
+                height: 130px;
+            }
+
+            fieldset {
+                padding: 14px 10px;
+            }
+
+            .form-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .form-actions button {
+                width: 100%;
+                margin-right: 0;
+                padding: 12px;
+            }
+
+            footer {
+                padding: 15px 10px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- საიტის მთავარი ჰედერი და ნავიგაცია -->
+    <header id="header">
+        <div class="header-top">
+            <div class="header-titles">
+                <h1><a href="index.html" class="brand-link">საბა მჭედლიშვილი</a></h1>
+                <p class="subtitle"><strong>დამწყები ვებ-დეველოპერი (16 წლის) | Frontend ენთუზიასტი</strong></p>
+            </div>
+            
+            <!-- ჰედერის მართვის ღილაკები: თემის გადამრთველი და ბურგერ მენიუ -->
+            <div class="header-controls">
+                <!-- Light / Dark თემის გადასართველი ღილაკი -->
+                <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="თემის შეცვლა (Light / Dark)" title="თემის შეცვლა">
+                    <span class="theme-icon sun-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </span>
+                    <span class="theme-icon moon-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </span>
+                </button>
+
+                <!-- ბურგერ მენიუს ღილაკი (მობილურის რეზოლუციაზე) -->
+                <button class="burger-btn" id="burger-btn" type="button" aria-label="ნავიგაციის მენიუს გახსნა" aria-expanded="false" aria-controls="main-nav">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- მთავარი ნავიგაცია -->
+        <nav id="main-nav" aria-label="მთავარი ნავიგაცია">
+            <ul>
+                <li><a href="index.html" class="active" aria-current="page">ჩემ შესახებ</a></li>
+                <li><a href="skills.html">უნარები</a></li>
+                <li><a href="projects.html">პროექტები</a></li>
+                <li><a href="goals.html">სასწავლო მიზნები</a></li>
+                <li><a href="contact.html">კონტაქტი</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <hr>
+
+    <!-- ძირითადი შიგთავსი -->
+    <main>
+
+        <!-- 1. ჩემ შესახებ სექცია -->
+        <section id="about">
+            <h2>ჩემ შესახებ</h2>
+            <figure>
+                <img 
+                    src="2pac.jpg" 
+                    alt="2Pac (Tupac Shakur)" 
+                    width="180" 
+                    height="180"
+                    onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/2Pac_1993.jpg/440px-2Pac_1993.jpg';"
+                >
+                <figcaption>2Pac (Tupac Shakur)</figcaption>
+            </figure>
+            <p>
+                გამარჯობა! მე ვარ საბა მჭედლიშვილი, 16 წლის. ახლახან დავიწყე პროგრამირების შესწავლა და ძალიან მაინტერესებს ვებ-ტექნოლოგიები. 
+                ამ ეტაპზე აქტიურად ვსწავლობ <strong>HTML5-ს</strong>, <strong>CSS3-სა</strong> და <strong>JavaScript-ის</strong> საფუძვლებს.
+            </p>
+            <p>
+                ჩემი მიზანია შევქმნა სუფთა, სემანტიკური და მომხმარებლისთვის მოსახერხებელი ვებ-გვერდები.
+            </p>
+            <blockquote>
+                <p><em>„ყველა გამოცდილი დეველოპერი ოდესღაც დამწყები იყო.“</em></p>
+            </blockquote>
+        </section>
+
+        <hr>
+
+        <!-- 2. უნარ-ჩვევების სექცია -->
+        <section id="skills">
+            <h2>ტექნიკური უნარები (სასწავლო პროგრესი)</h2>
+            <ul class="skills-list">
+                <li>
+                    <span class="skill-title"><strong>HTML5 &amp; Semantic Web:</strong></span>
+                    <progress value="45" max="100">45%</progress> 
+                    <span class="skill-desc">(45% - საფუძვლიანად ვსწავლობ სემანტიკურ თეგებს)</span>
+                </li>
+                <li>
+                    <span class="skill-title"><strong>CSS3 &amp; Web Design:</strong></span>
+                    <progress value="25" max="100">25%</progress> 
+                    <span class="skill-desc">(25% - ვიზუალური გაფორმების საწყისები)</span>
+                </li>
+                <li>
+                    <span class="skill-title"><strong>JavaScript (საფუძვლები):</strong></span>
+                    <progress value="15" max="100">15%</progress> 
+                    <span class="skill-desc">(15% - ლოგიკის პირველი ნაბიჯები)</span>
+                </li>
+            </ul>
+
+            <details>
+                <summary>დამატებითი მიმართულებები, რასაც განვიხილავ (დააჭირეთ გასახსნელად)</summary>
+                <ul>
+                    <li>Responsive Web Design (ადაპტური დიზაინი)</li>
+                    <li>Web Accessibility (სემანტიკური ხელმისაწვდომობა)</li>
+                    <li>Git &amp; GitHub (კოდის შენახვა და გაზიარება)</li>
+                </ul>
+            </details>
+        </section>
+
+        <hr>
+
+        <!-- 3. პროექტების სექცია -->
+        <section id="projects">
+            <h2>შესრულებული და მიმდინარე პროექტები</h2>
+            <p>
+                რადგან ახლახან დავიწყე პროგრამირების სწავლა, დიდი კომერციული პროექტები ჯერ არ მაქვს. 
+                თუმცა უკვე ვმუშაობ ჩემს პირველ სასწავლო ნამუშევრებზე:
+            </p>
+
+            <!-- პროექტი 1: ეს პორტფოლიო -->
+            <article id="project-1">
+                <header>
+                    <h3>1. პერსონალური სემანტიკური პორტფოლიო</h3>
+                    <p><time datetime="2026-10">ოქტომბერი, 2026</time></p>
+                </header>
+                <p>
+                    ეს არის ჩემი პირველი დამოუკიდებელი ნამუშევარი, რომელიც შევქმენი სუფთა HTML5-ის სტანდარტების დაცვით. 
+                    გვერდი იყენებს სემანტიკურ თეგებს (header, nav, main, section, article, figure, address, footer), მოიცავს ადაპტურ დიზაინს, Light/Dark თემებს და მობილურ ბურგერ ნავიგაციას.
+                </p>
+                <p><strong>გამოყენებული ტექნოლოგია:</strong> HTML5, CSS3, JavaScript</p>
+            </article>
+
+            <!-- პროექტი 2: სამომავლო პროექტი -->
+            <article id="project-2">
+                <header>
+                    <h3>2. საინფორმაციო ბლოგი / ჰობის გვერდი</h3>
+                    <p><em>სტატუსი: დაგეგმვის პროცესში</em></p>
+                </header>
+                <p>
+                    ვგეგმავ მარტივი თემატური გვერდის აწყობას, სადაც გამოვიყენებ ცხრილებს, მულტიმედია ელემენტებს (აუდიო/ვიდეო) და სრულყოფილ ფორმებს.
+                </p>
+                <p><strong>დაგეგმილი ტექნოლოგიები:</strong> HTML5, CSS3, JavaScript</p>
+            </article>
+        </section>
+
+        <hr>
+
+        <!-- 4. სასწავლო მიზნების ცხრილი -->
+        <section id="goals">
+            <h2>სასწავლო მიზნები და გეგმა</h2>
+
+            <div class="table-container">
+                <table border="1" cellpadding="8" cellspacing="0">
+                    <caption><strong>ჩემი უახლოესი მიზნები</strong></caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">ეტაპი</th>
+                            <th scope="col">თემა</th>
+                            <th scope="col">სტატუსი</th>
+                            <th scope="col">შედეგი</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ეტაპი 1</td>
+                            <td>HTML5 სემანტიკა და ფორმები</td>
+                            <td>მიმდინარე</td>
+                            <td>პორტფოლიოსა და ფორმების შექმნა</td>
+                        </tr>
+                        <tr>
+                            <td>ეტაპი 2</td>
+                            <td>CSS3 სტილები და Flexbox</td>
+                            <td>დაგეგმილი</td>
+                            <td>დიზაინის ვიზუალური გაუმჯობესება</td>
+                        </tr>
+                        <tr>
+                            <td>ეტაპი 3</td>
+                            <td>JavaScript-ის საფუძვლები</td>
+                            <td>დაგეგმილი</td>
+                            <td>ინტერაქტიული ფუნქციების დამატება</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- 5. საკონტაქტო სექცია -->
+        <section id="contact">
+            <h2>დამიკავშირდით</h2>
+            <p>გაქვთ რჩევები, უკუკავშირი ან შეკითხვები? შეგიძლიათ მომწეროთ ქვემოთ მოცემული ფორმით:</p>
+
+            <address>
+                <ul class="contact-info">
+                    <li><strong>ელ. ფოსტა:</strong> <a href="mailto:saba.mchedlishvili@example.com">saba.mchedlishvili@example.com</a></li>
+                    <li><strong>მდებარეობა:</strong> საქართველო</li>
+                </ul>
+            </address>
+
+            <form action="#" method="post">
+                <fieldset>
+                    <legend><strong>საკონტაქტო ფორმა</strong></legend>
+                    
+                    <p>
+                        <label for="full-name">თქვენი სახელი: <abbr title="სავალდებულო">*</abbr></label><br>
+                        <input type="text" id="full-name" name="name" placeholder="მაგ: გიორგი" required>
+                    </p>
+
+                    <p>
+                        <label for="email">ელ-ფოსტა: <abbr title="სავალდებულო">*</abbr></label><br>
+                        <input type="email" id="email" name="email" placeholder="name@example.com" required>
+                    </p>
+
+                    <p>
+                        <label for="topic">თემა:</label><br>
+                        <select id="topic" name="topic">
+                            <option value="feedback">რჩევა / უკუკავშირი</option>
+                            <option value="question">შეკითხვა</option>
+                            <option value="other">სხვა</option>
+                        </select>
+                    </p>
+
+                    <p>
+                        <label for="message">შეტყობინება: <abbr title="სავალდებულო">*</abbr></label><br>
+                        <textarea id="message" name="message" rows="5" cols="40" placeholder="დაწერეთ თქვენი შეტყობინება..." required></textarea>
+                    </p>
+
+                    <div class="form-actions">
+                        <button type="submit">შეტყობინების გაგზავნა</button>
+                        <button type="reset">გასუფთავება</button>
+                    </div>
+                </fieldset>
+            </form>
+        </section>
+
+    </main>
+
+    <hr>
+
+    <!-- საიტის ფუტერი -->
+    <footer id="footer">
+        <p>&copy; 2026 საბა მჭედლიშვილი. ყველა უფლება დაცულია.</p>
+        <p><a href="#header">დაბრუნება გვერდის თავში</a></p>
+    </footer>
+
+    <!-- ==========================================================================
+         JavaScript ფუნქციონალი (პირდაპირ index.html-ში)
+         ========================================================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 1. Light / Dark თემის მართვა
+            var themeToggleBtn = document.getElementById('theme-toggle');
+
+            function getStoredTheme() {
+                var saved = localStorage.getItem('portfolio-theme');
+                if (saved === 'dark' || saved === 'light') {
+                    return saved;
+                }
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    return 'dark';
+                }
+                return 'light';
+            }
+
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    document.body.classList.add('dark-theme');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    document.body.classList.remove('dark-theme');
+                }
+                localStorage.setItem('portfolio-theme', theme);
+
+                if (themeToggleBtn) {
+                    var isDark = (theme === 'dark');
+                    themeToggleBtn.setAttribute('aria-label', isDark ? 'სინათლის (Light) თემაზე გადართვა' : 'ბნელ (Dark) თემაზე გადართვა');
+                    themeToggleBtn.setAttribute('title', isDark ? 'Light რეჟიმი' : 'Dark რეჟიმი');
+                }
+            }
+
+            applyTheme(getStoredTheme());
+
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', function () {
+                    var isDark = document.documentElement.getAttribute('data-theme') === 'dark' || document.body.classList.contains('dark-theme');
+                    applyTheme(isDark ? 'light' : 'dark');
+                });
+            }
+
+            // 2. მობილური ბურგერ მენიუს მართვა (JavaScript)
+            var burgerBtn = document.getElementById('burger-btn');
+            var mainNav = document.getElementById('main-nav');
+            var navLinks = document.querySelectorAll('#main-nav a');
+
+            if (burgerBtn && mainNav) {
+                burgerBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    toggleMobileNav();
+                });
+
+                burgerBtn.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleMobileNav();
+                    }
+                });
+
+                function toggleMobileNav() {
+                    var isOpen = mainNav.classList.toggle('is-open');
+                    burgerBtn.classList.toggle('is-active', isOpen);
+                    burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                    burgerBtn.setAttribute('aria-label', isOpen ? 'ნავიგაციის მენიუს დახურვა' : 'ნავიგაციის მენიუს გახსნა');
+                }
+
+                function closeMobileNav() {
+                    if (mainNav.classList.contains('is-open')) {
+                        mainNav.classList.remove('is-open');
+                        burgerBtn.classList.remove('is-active');
+                        burgerBtn.setAttribute('aria-expanded', 'false');
+                        burgerBtn.setAttribute('aria-label', 'ნავიგაციის მენიუს გახსნა');
+                    }
+                }
+
+                navLinks.forEach(function (link) {
+                    link.addEventListener('click', function () {
+                        closeMobileNav();
+                    });
+                });
+
+                document.addEventListener('click', function (e) {
+                    if (!mainNav.contains(e.target) && !burgerBtn.contains(e.target)) {
+                        closeMobileNav();
+                    }
+                });
+
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') {
+                        closeMobileNav();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

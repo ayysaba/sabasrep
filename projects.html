@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="საბა მჭედლიშვილის შესრულებული და მიმდინარე პროექტები">
+    <title>პროექტები | საბა მჭედლიშვილი</title>
+    <!-- დაკავშირებული CSS სტილები და JavaScript ფაილი -->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- საიტის მთავარი ჰედერი და ნავიგაცია -->
+    <header id="header">
+        <div class="header-top">
+            <div class="header-titles">
+                <h1><a href="index.html" class="brand-link">საბა მჭედლიშვილი</a></h1>
+                <p class="subtitle"><strong>დამწყები ვებ-დეველოპერი (16 წლის) | Frontend ენთუზიასტი</strong></p>
+            </div>
+            
+            <!-- ჰედერის მართვის ღილაკები: თემის გადამრთველი და ბურგერ მენიუ -->
+            <div class="header-controls">
+                <!-- Light / Dark თემის გადასართველი ღილაკი -->
+                <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="თემის შეცვლა (Light / Dark)" title="თემის შეცვლა">
+                    <span class="theme-icon sun-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </span>
+                    <span class="theme-icon moon-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </span>
+                </button>
+
+                <!-- ბურგერ მენიუს ღილაკი (მობილურის რეზოლუციაზე) -->
+                <button class="burger-btn" id="burger-btn" type="button" aria-label="ნავიგაციის მენიუს გახსნა" aria-expanded="false" aria-controls="main-nav">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- მთავარი ნავიგაცია -->
+        <nav id="main-nav" aria-label="მთავარი ნავიგაცია">
+            <ul>
+                <li><a href="index.html">ჩემ შესახებ</a></li>
+                <li><a href="skills.html">უნარები</a></li>
+                <li><a href="projects.html" class="active" aria-current="page">პროექტები</a></li>
+                <li><a href="goals.html">სასწავლო მიზნები</a></li>
+                <li><a href="contact.html">კონტაქტი</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ძირითადი შიგთავსი: პროექტები -->
+    <main>
+        <section id="projects">
+            <h2>შესრულებული და მიმდინარე პროექტები</h2>
+            <p>
+                რადგან ახლახან დავიწყე პროგრამირების სწავლა, დიდი კომერციული პროექტები ჯერ არ მაქვს. 
+                თუმცა უკვე ვმუშაობ ჩემს პირველ სასწავლო ნამუშევრებზე:
+            </p>
+
+            <!-- პროექტი 1: ეს პორტფოლიო -->
+            <article id="project-1">
+                <header>
+                    <h3>1. პერსონალური სემანტიკური პორტფოლიო</h3>
+                    <p><time datetime="2026-10">ოქტომბერი, 2026</time></p>
+                </header>
+                <p>
+                    ეს არის ჩემი პირველი დამოუკიდებელი ნამუშევარი, რომელიც შევქმენი სუფთა HTML5-ის სტანდარტების დაცვით. 
+                    გვერდი იყენებს სემანტიკურ თეგებს (header, nav, main, section, article, figure, address, footer), მოიცავს ადაპტურ დიზაინს, Light/Dark თემებს და მობილურ ბურგერ ნავიგაციას.
+                </p>
+                <p><strong>გამოყენებული ტექნოლოგია:</strong> HTML5, CSS3, JavaScript</p>
+            </article>
+
+            <!-- პროექტი 2: სამომავლო პროექტი -->
+            <article id="project-2">
+                <header>
+                    <h3>2. საინფორმაციო ბლოგი / ჰობის გვერდი</h3>
+                    <p><em>სტატუსი: დაგეგმვის პროცესში</em></p>
+                </header>
+                <p>
+                    ვგეგმავ მარტივი თემატური გვერდის აწყობას, სადაც გამოვიყენებ ცხრილებს, მულტიმედია ელემენტებს (აუდიო/ვიდეო) და სრულყოფილ ფორმებს.
+                </p>
+                <p><strong>დაგეგმილი ტექნოლოგიები:</strong> HTML5, CSS3, JavaScript</p>
+            </article>
+        </section>
+    </main>
+
+    <!-- საიტის ფუტერი -->
+    <footer id="footer">
+        <p>&copy; 2026 საბა მჭედლიშვილი. ყველა უფლება დაცულია.</p>
+        <p><a href="#header">დაბრუნება გვერდის თავში</a></p>
+    </footer>
+
+</body>
+</html>
