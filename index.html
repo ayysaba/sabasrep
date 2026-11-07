@@ -5,7 +5,863 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="საბა მჭედლიშვილის პერსონალური პორტფოლიო - დამწყები ვებ-დეველოპერი">
     <title>პორტფოლიო | საბა მჭედლიშვილი</title>
-    <!-- დაკავშირებული CSS სტილები და JavaScript ფაილი -->
+
+    <!-- ==========================================================================
+         ყველა CSS სტილი ჩაშენებულია პირდაპირ ამ index.html ფაილში (Internal CSS),
+         რათა GitHub-ზე ან ტელეფონზე ცალკე გახსნის დროსაც სრულად გამოჩნდეს:
+         - თეთრი და ყავისფერი (#53392c) ფერთა პალიტრა;
+         - Light და Dark თემები;
+         - სრული რესფონსიული დიზაინი და მობილური ბურგერ მენიუს სტილები.
+         ========================================================================== -->
+    <style>
+        /* ==========================================================================
+           0. CSS ცვლადები (Custom Properties) - Light და Dark თემები
+           ========================================================================== */
+        :root {
+            /* Light Theme (ნაგულისხმევი) */
+            --bg-color: #faf7f2;
+            --card-bg: #ffffff;
+            --card-border: #eee5dc;
+            --text-primary: #53392c;
+            --text-secondary: #7d6b5e;
+            --heading-color: #53392c;
+            --accent-color: #53392c;
+            --accent-hover: #3d281e;
+            --btn-text: #ffffff;
+            --btn-secondary-bg: #eee4d9;
+            --btn-secondary-text: #53392c;
+            --btn-secondary-hover: #dfd2c4;
+            --nav-bg: #f7f2ec;
+            --nav-border: #eadfd4;
+            --nav-text: #53392c;
+            --card-shadow: 0 4px 14px rgba(83, 57, 44, 0.05);
+            --border-accent: #ecdcd0;
+            --item-bg: #fbf8f4;
+            --item-border: #ece2d7;
+            --input-bg: #ffffff;
+            --input-border: #d5c6b7;
+            --input-focus-shadow: rgba(83, 57, 44, 0.15);
+            --progress-bg: #eadecf;
+            --progress-bar: #53392c;
+            --table-th-bg: #f5ede4;
+            --table-border: #eee5dc;
+            --table-hover: #faf5ee;
+            --blockquote-bg: #faf6f1;
+            --fieldset-bg: #fdfbf8;
+        }
+
+        /* Dark Theme */
+        [data-theme="dark"], body.dark-theme {
+            --bg-color: #171412;
+            --card-bg: #231f1c;
+            --card-border: #38312b;
+            --text-primary: #f5eee8;
+            --text-secondary: #b8a89a;
+            --heading-color: #f5eee8;
+            --accent-color: #c4956d;
+            --accent-hover: #d9aa82;
+            --btn-text: #171412;
+            --btn-secondary-bg: #332c26;
+            --btn-secondary-text: #f5eee8;
+            --btn-secondary-hover: #423932;
+            --nav-bg: #2c2621;
+            --nav-border: #423a33;
+            --nav-text: #f5eee8;
+            --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+            --border-accent: #3d352d;
+            --item-bg: #1c1815;
+            --item-border: #38312b;
+            --input-bg: #1a1614;
+            --input-border: #4a4037;
+            --input-focus-shadow: rgba(196, 149, 109, 0.25);
+            --progress-bg: #362e27;
+            --progress-bar: #c4956d;
+            --table-th-bg: #2c2520;
+            --table-border: #3d352d;
+            --table-hover: #29231e;
+            --blockquote-bg: #1e1a17;
+            --fieldset-bg: #1c1815;
+        }
+
+        /* 
+          1. გლობალური პარამეტრები და Box-Sizing:
+        */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 
+          2. ძირითადი გვერდის პარამეტრები (Body):
+        */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px 0;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* 
+          3. კონტეინერები (Header, Main, Footer):
+        */
+        header, main, footer {
+            width: 90%;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        /* 
+          4. ჰედერი (Header):
+        */
+        header {
+            background-color: var(--card-bg);
+            padding: 1.8rem 2rem;
+            border-radius: 14px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-shadow);
+            margin-bottom: 25px;
+            position: relative;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            text-align: left;
+        }
+
+        .header-titles {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* სათაურების სტილები */
+        h1 {
+            color: var(--heading-color);
+            font-size: 2.1rem;
+            margin-top: 0;
+            margin-bottom: 0.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .brand-link {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .brand-link:hover {
+            opacity: 0.85;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.98rem;
+            transition: color 0.3s ease;
+        }
+
+        .subtitle strong {
+            color: var(--accent-color);
+            transition: color 0.3s ease;
+        }
+
+        h2 {
+            color: var(--heading-color);
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--border-accent);
+            padding-bottom: 8px;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        h3 {
+            color: var(--heading-color);
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        hr {
+            display: none;
+        }
+
+        /* 
+          5. ჰედერის მართვის ღილაკები (Theme Toggle და Burger Menu):
+        */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 40px;
+            background-color: var(--nav-bg);
+            border: 1px solid var(--nav-border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.15s ease, color 0.25s ease;
+            padding: 0;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle-btn:hover {
+            background-color: var(--btn-secondary-hover);
+            transform: scale(1.05);
+        }
+
+        .theme-toggle-btn:active {
+            transform: scale(0.95);
+        }
+
+        .theme-toggle-btn:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        .theme-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        /* Light რეჟიმში ჩანს მთვარე */
+        .sun-icon {
+            display: none;
+        }
+        .moon-icon {
+            display: inline-flex;
+        }
+
+        /* Dark რეჟიმში ჩანს მზე */
+        [data-theme="dark"] .sun-icon,
+        body.dark-theme .sun-icon {
+            display: inline-flex;
+            color: #f5c542;
+        }
+
+        [data-theme="dark"] .moon-icon,
+        body.dark-theme .moon-icon {
+            display: none;
+        }
+
+        /* 
+          6. ბურგერ მენიუს ღილაკი:
+        */
+        .burger-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 44px;
+            height: 40px;
+            padding: 9px 8px;
+            background-color: var(--nav-bg);
+            border: 1px solid var(--nav-border);
+            border-radius: 8px;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            user-select: none;
+        }
+
+        .burger-btn:hover {
+            background-color: var(--btn-secondary-hover);
+        }
+
+        .burger-btn:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        .burger-line {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-primary);
+            border-radius: 3px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                        opacity 0.2s ease, 
+                        background-color 0.3s ease;
+            transform-origin: center;
+        }
+
+        /* ბურგერ ხაზების ანიმაცია X-ად */
+        .burger-btn.is-active .burger-line:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+            background-color: var(--accent-color);
+        }
+
+        .burger-btn.is-active .burger-line:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .burger-btn.is-active .burger-line:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+            background-color: var(--accent-color);
+        }
+
+        /* 
+          7. ნავიგაცია (Navigation):
+        */
+        nav {
+            display: block;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        nav a {
+            display: inline-block;
+            color: var(--nav-text);
+            text-decoration: none;
+            background-color: var(--nav-bg);
+            border: 1px solid var(--nav-border);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        nav a:hover, nav a:focus-visible {
+            background-color: var(--accent-color);
+            color: var(--btn-text);
+            border-color: var(--accent-color);
+            outline: none;
+        }
+
+        /* აქტიური ღილაკის სტილი */
+        nav a.active {
+            background-color: var(--accent-color);
+            color: var(--btn-text);
+            border-color: var(--accent-color);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 
+          8. სექციები (Sections):
+        */
+        section {
+            background-color: var(--card-bg);
+            padding: 24px;
+            margin-bottom: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-shadow);
+            scroll-margin-top: 20px;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        figure {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        figure img {
+            width: 180px;
+            height: 180px;
+            max-width: 100%;
+            border-radius: 50%;
+            border: 4px solid var(--card-border);
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            transition: border-color 0.3s ease;
+        }
+
+        figcaption {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 8px;
+            transition: color 0.3s ease;
+        }
+
+        blockquote {
+            background-color: var(--blockquote-bg);
+            border-left: 4px solid var(--accent-color);
+            margin: 15px 0;
+            padding: 12px 20px;
+            font-style: italic;
+            color: var(--text-primary);
+            border-radius: 0 8px 8px 0;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* 
+          9. უნარები (Skills):
+        */
+        .skills-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .skills-list li {
+            background-color: var(--item-bg);
+            border: 1px solid var(--item-border);
+            border-radius: 8px;
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .skill-title {
+            color: var(--heading-color);
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .skills-list progress {
+            width: 100%;
+            height: 16px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: none;
+            background-color: var(--progress-bg);
+        }
+
+        .skills-list progress::-webkit-progress-bar {
+            background-color: var(--progress-bg);
+        }
+
+        .skills-list progress::-webkit-progress-value {
+            background-color: var(--progress-bar);
+        }
+
+        .skills-list progress::-moz-progress-bar {
+            background-color: var(--progress-bar);
+        }
+
+        .skill-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        details {
+            background-color: var(--item-bg);
+            border: 1px solid var(--item-border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        details summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--accent-color);
+            transition: color 0.3s ease;
+        }
+
+        details ul {
+            margin: 10px 0 0 20px;
+            padding: 0;
+        }
+
+        details li {
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        /* პროექტების ბარათები (Article) */
+        article {
+            background-color: var(--item-bg);
+            border: 1px solid var(--item-border);
+            border-left: 4px solid var(--accent-color);
+            padding: 16px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        article header p {
+            margin: 0 0 8px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        /* 
+          10. ცხრილი (Table):
+        */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--item-border);
+        }
+
+        table {
+            width: 100%;
+            min-width: 500px;
+            border-collapse: collapse;
+            background-color: var(--card-bg);
+            transition: background-color 0.3s ease;
+        }
+
+        caption {
+            padding: 10px;
+            font-size: 1.05rem;
+            color: var(--heading-color);
+            caption-side: top;
+            text-align: left;
+            transition: color 0.3s ease;
+        }
+
+        th, td {
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--table-border);
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+
+        th {
+            background-color: var(--table-th-bg);
+            color: var(--heading-color);
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--text-primary);
+        }
+
+        tbody tr:hover {
+            background-color: var(--table-hover);
+        }
+
+        /* 
+          11. ფორმა და ღილაკები (Form & Inputs):
+        */
+        .contact-info {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .contact-info li {
+            margin-bottom: 8px;
+        }
+
+        .contact-info a {
+            color: var(--accent-color);
+            text-decoration: none;
+            word-break: break-all;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        fieldset {
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 20px;
+            background-color: var(--fieldset-bg);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        legend {
+            color: var(--accent-color);
+            font-weight: bold;
+            padding: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 12px;
+            margin-top: 6px;
+            border: 1px solid var(--input-border);
+            border-radius: 6px;
+            background-color: var(--input-bg);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s, background-color 0.3s ease, color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px var(--input-focus-shadow);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: var(--btn-text);
+            border: none;
+            padding: 11px 24px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s, color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button[type="reset"] {
+            background-color: var(--btn-secondary-bg);
+            color: var(--btn-secondary-text);
+        }
+
+        button[type="reset"]:hover {
+            background-color: var(--btn-secondary-hover);
+        }
+
+        /* 12. ფუტერი (Footer) */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ==========================================================================
+           13. რესფონსიული დიზაინი (Responsive Design / Media Queries):
+           ========================================================================== */
+
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 12px 0;
+            }
+
+            header, main, footer {
+                width: 94%;
+            }
+
+            header {
+                padding: 1.25rem 1rem;
+                margin-bottom: 18px;
+            }
+
+            .header-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                text-align: left;
+                gap: 12px;
+            }
+
+            .header-titles {
+                flex: 1;
+                min-width: 0;
+            }
+
+            h1 {
+                font-size: 1.55rem;
+                margin-bottom: 4px;
+                word-break: break-word;
+            }
+
+            .subtitle {
+                font-size: 0.88rem;
+                line-height: 1.4;
+            }
+
+            /* ბურგერ ღილაკის გამოჩენა მობილურზე */
+            .burger-btn {
+                display: flex;
+            }
+
+            /* მობილური ნავიგაცია - ნაგულისხმევად დამალულია */
+            #main-nav {
+                display: none;
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid var(--border-accent);
+            }
+
+            /* JavaScript-ით მენიუს გამოჩენა (.is-open კლასით) */
+            #main-nav.is-open {
+                display: block;
+                animation: slideDown 0.25s ease-out;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 8px;
+                margin: 0;
+                width: 100%;
+            }
+
+            nav a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 12px 16px;
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 18px 16px;
+                margin-bottom: 18px;
+            }
+
+            h2 {
+                font-size: 1.35rem;
+            }
+
+            figure img {
+                width: 150px;
+                height: 150px;
+            }
+
+            article {
+                padding: 14px 16px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            body {
+                padding: 8px 0;
+            }
+
+            header, main, footer {
+                width: 95%;
+            }
+
+            header {
+                padding: 1rem;
+                border-radius: 10px;
+            }
+
+            h1 {
+                font-size: 1.35rem;
+            }
+
+            .subtitle {
+                font-size: 0.82rem;
+            }
+
+            .theme-toggle-btn {
+                width: 38px;
+                height: 38px;
+            }
+
+            .burger-btn {
+                width: 38px;
+                height: 38px;
+                padding: 8px 7px;
+            }
+
+            section {
+                padding: 14px 12px;
+                border-radius: 10px;
+                margin-bottom: 14px;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            figure img {
+                width: 130px;
+                height: 130px;
+            }
+
+            fieldset {
+                padding: 14px 10px;
+            }
+
+            .form-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .form-actions button {
+                width: 100%;
+                margin-right: 0;
+                padding: 12px;
+            }
+
+            footer {
+                padding: 15px 10px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <!-- გარე CSS და JS ფაილები (თუ ცალკე ფაილებიც ატვირთულია) -->
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
@@ -98,31 +954,36 @@
 
         <!-- 2. უნარ-ჩვევების სექცია -->
         <section id="skills">
-            <h2>ტექნიკური უნარები (სასწავლო პროგრესი)</h2>
+            <h2>უნარები და ტექნოლოგიები</h2>
             <ul class="skills-list">
                 <li>
-                    <span class="skill-title"><strong>HTML5 &amp; Semantic Web:</strong></span>
-                    <progress value="45" max="100">45%</progress> 
-                    <span class="skill-desc">(45% - საფუძვლიანად ვსწავლობ სემანტიკურ თეგებს)</span>
+                    <span class="skill-title"><strong>HTML5</strong> - სემანტიკური მარკირება</span>
+                    <progress value="85" max="100">85%</progress>
+                    <span class="skill-desc">სემანტიკური ელემენტები, ფორმები, ცხრილები და ხელმისაწვდომობა (A11y).</span>
                 </li>
                 <li>
-                    <span class="skill-title"><strong>CSS3 &amp; Web Design:</strong></span>
-                    <progress value="25" max="100">25%</progress> 
-                    <span class="skill-desc">(25% - ვიზუალური გაფორმების საწყისები)</span>
+                    <span class="skill-title"><strong>CSS3</strong> - სტილები და დიზაინი</span>
+                    <progress value="70" max="100">70%</progress>
+                    <span class="skill-desc">Flexbox, Grid, მედია მოთხოვნები (Media Queries) და რესფონსიული განლაგება.</span>
                 </li>
                 <li>
-                    <span class="skill-title"><strong>JavaScript (საფუძვლები):</strong></span>
-                    <progress value="15" max="100">15%</progress> 
-                    <span class="skill-desc">(15% - ლოგიკის პირველი ნაბიჯები)</span>
+                    <span class="skill-title"><strong>JavaScript</strong> - საბაზისო ინტერაქციები</span>
+                    <progress value="50" max="100">50%</progress>
+                    <span class="skill-desc">DOM-თან მუშაობა, მოვლენების დამუშავება (Event Listeners) და ლოგიკა.</span>
+                </li>
+                <li>
+                    <span class="skill-title"><strong>Git & GitHub</strong> - ვერსიების კონტროლი</span>
+                    <progress value="45" max="100">45%</progress>
+                    <span class="skill-desc">კოდის ატვირთვა, რეპოზიტორიების მართვა და GitHub Pages.</span>
                 </li>
             </ul>
 
             <details>
-                <summary>დამატებითი მიმართულებები, რასაც განვიხილავ (დააჭირეთ გასახსნელად)</summary>
+                <summary>დამატებითი დეტალები სასწავლო პროგრამის შესახებ</summary>
                 <ul>
-                    <li>Responsive Web Design (ადაპტური დიზაინი)</li>
-                    <li>Web Accessibility (სემანტიკური ხელმისაწვდომობა)</li>
-                    <li>Git &amp; GitHub (კოდის შენახვა და გაზიარება)</li>
+                    <li>Semantic Tags: &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;, &lt;footer&gt;</li>
+                    <li>CSS Variables, Flexbox, Media Queries (Mobile First & Desktop)</li>
+                    <li>ფორმის ვალიდაციები და ტიპები</li>
                 </ul>
             </details>
         </section>
@@ -131,35 +992,32 @@
 
         <!-- 3. პროექტების სექცია -->
         <section id="projects">
-            <h2>შესრულებული და მიმდინარე პროექტები</h2>
-            <p>
-                რადგან ახლახან დავიწყე პროგრამირების სწავლა, დიდი კომერციული პროექტები ჯერ არ მაქვს. 
-                თუმცა უკვე ვმუშაობ ჩემს პირველ სასწავლო ნამუშევრებზე:
-            </p>
-
-            <!-- პროექტი 1: ეს პორტფოლიო -->
-            <article id="project-1">
+            <h2>ჩემი პროექტები</h2>
+            
+            <article>
                 <header>
-                    <h3>1. პერსონალური სემანტიკური პორტფოლიო</h3>
-                    <p><time datetime="2026-10">ოქტომბერი, 2026</time></p>
+                    <h3>პროექტი 1: პირადი სავიზიტო გვერდი</h3>
+                    <p><small>ტექნოლოგიები: HTML5, CSS3</small></p>
                 </header>
                 <p>
-                    ეს არის ჩემი პირველი დამოუკიდებელი ნამუშევარი, რომელიც შევქმენი სუფთა HTML5-ის სტანდარტების დაცვით. 
-                    გვერდი იყენებს სემანტიკურ თეგებს (header, nav, main, section, article, figure, address, footer), მოიცავს ადაპტურ დიზაინს, Light/Dark თემებს და მობილურ ბურგერ ნავიგაციას.
+                    ჩემი პირველი საგანმანათლებლო პროექტი, სადაც შევქმენი მარტივი და სუფთა სტრუქტურის მქონე სავიზიტო ბარათი.
                 </p>
-                <p><strong>გამოყენებული ტექნოლოგია:</strong> HTML5, CSS3, JavaScript</p>
+                <footer>
+                    <p>სტატუსი: <strong>დასრულებული</strong></p>
+                </footer>
             </article>
 
-            <!-- პროექტი 2: სამომავლო პროექტი -->
-            <article id="project-2">
+            <article>
                 <header>
-                    <h3>2. საინფორმაციო ბლოგი / ჰობის გვერდი</h3>
-                    <p><em>სტატუსი: დაგეგმვის პროცესში</em></p>
+                    <h3>პროექტი 2: რესფონსიული პორტფოლიო</h3>
+                    <p><small>ტექნოლოგიები: HTML5, CSS3 (Variables, Flexbox), JavaScript</small></p>
                 </header>
                 <p>
-                    ვგეგმავ მარტივი თემატური გვერდის აწყობას, სადაც გამოვიყენებ ცხრილებს, მულტიმედია ელემენტებს (აუდიო/ვიდეო) და სრულყოფილ ფორმებს.
+                    პორტფოლიო, რომელიც სრულად მორგებულია მობილურ ეკრანებზე: გააჩნია ფუნქციური JavaScript ბურგერ მენიუ და Light/Dark თემის გადამრთველი.
                 </p>
-                <p><strong>დაგეგმილი ტექნოლოგიები:</strong> HTML5, CSS3, JavaScript</p>
+                <footer>
+                    <p>სტატუსი: <strong>მიმდინარე</strong></p>
+                </footer>
             </article>
         </section>
 
@@ -168,36 +1026,42 @@
         <!-- 4. სასწავლო მიზნების ცხრილი -->
         <section id="goals">
             <h2>სასწავლო მიზნები და გეგმა</h2>
-
+            
             <div class="table-container">
-                <table border="1" cellpadding="8" cellspacing="0">
-                    <caption><strong>ჩემი უახლოესი მიზნები</strong></caption>
+                <table>
+                    <caption><strong>2026 წლის სასწავლო გეგმა და ვადები</strong></caption>
                     <thead>
                         <tr>
-                            <th scope="col">ეტაპი</th>
-                            <th scope="col">თემა</th>
-                            <th scope="col">სტატუსი</th>
-                            <th scope="col">შედეგი</th>
+                            <th>ტექნოლოგია / თემა</th>
+                            <th>დონე</th>
+                            <th>სავარაუდო ვადა</th>
+                            <th>სტატუსი</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>ეტაპი 1</td>
-                            <td>HTML5 სემანტიკა და ფორმები</td>
+                            <td>HTML5 & CSS3 საფუძვლები</td>
+                            <td>საბაზისო / საშუალო</td>
+                            <td>თებერვალი 2026</td>
+                            <td>დასრულებული</td>
+                        </tr>
+                        <tr>
+                            <td>რესფონსიული დიზაინი & Flexbox/Grid</td>
+                            <td>საშუალო</td>
+                            <td>მარტი 2026</td>
                             <td>მიმდინარე</td>
-                            <td>პორტფოლიოსა და ფორმების შექმნა</td>
                         </tr>
                         <tr>
-                            <td>ეტაპი 2</td>
-                            <td>CSS3 სტილები და Flexbox</td>
-                            <td>დაგეგმილი</td>
-                            <td>დიზაინის ვიზუალური გაუმჯობესება</td>
+                            <td>JavaScript ES6+ საფუძვლები</td>
+                            <td>საბაზისო</td>
+                            <td>აპრილი 2026</td>
+                            <td>დაწყებული</td>
                         </tr>
                         <tr>
-                            <td>ეტაპი 3</td>
-                            <td>JavaScript-ის საფუძვლები</td>
+                            <td>React.js ან სხვა თანამედროვე ბიბლიოთეკა</td>
+                            <td>დამწყები</td>
+                            <td>მაისი 2026</td>
                             <td>დაგეგმილი</td>
-                            <td>ინტერაქტიული ფუნქციების დამატება</td>
                         </tr>
                     </tbody>
                 </table>
@@ -208,15 +1072,14 @@
 
         <!-- 5. საკონტაქტო სექცია -->
         <section id="contact">
-            <h2>დამიკავშირდით</h2>
-            <p>გაქვთ რჩევები, უკუკავშირი ან შეკითხვები? შეგიძლიათ მომწეროთ ქვემოთ მოცემული ფორმით:</p>
+            <h2>კონტაქტი</h2>
+            <p>თუ გაქვთ რაიმე შეკითხვა, იდეა ან შემოთავაზება, სიამოვნებით მოგისმენთ:</p>
 
-            <address>
-                <ul class="contact-info">
-                    <li><strong>ელ. ფოსტა:</strong> <a href="mailto:saba.mchedlishvili@example.com">saba.mchedlishvili@example.com</a></li>
-                    <li><strong>მდებარეობა:</strong> საქართველო</li>
-                </ul>
-            </address>
+            <ul class="contact-info">
+                <li><strong>ელ-ფოსტა:</strong> <a href="mailto:saba.mchedlishvili@example.com">saba.mchedlishvili@example.com</a></li>
+                <li><strong>ტელეფონი:</strong> <a href="tel:+995555123456">+995 555 12 34 56</a></li>
+                <li><strong>GitHub:</strong> <a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com/sabamchedlishvili</a></li>
+            </ul>
 
             <form action="#" method="post">
                 <fieldset>
@@ -264,5 +1127,119 @@
         <p><a href="#header">დაბრუნება გვერდის თავში</a></p>
     </footer>
 
+    <!-- ==========================================================================
+         ყველა JavaScript კოდი ჩაშენებულია პირდაპირ ამ index.html ფაილში (Internal JS),
+         რათა GitHub-ზე ან ტელეფონზე ცალკე გახსნის დროსაც სრულად იმუშაოს:
+         - Light / Dark თემის გადართვა და შენახვა (localStorage);
+         - მობილური ბურგერ მენიუს გახსნა/დახურვა;
+         - გარე დაკლიკების და Escape ღილაკის მხარდაჭერა.
+         ========================================================================== -->
+    <script>
+        (function () {
+            if (window.__portfolioInit) return;
+            window.__portfolioInit = true;
+
+            function initPortfolio() {
+                // 1. Light / Dark თემის მართვა
+                var themeToggleBtn = document.getElementById('theme-toggle');
+
+                function getStoredTheme() {
+                    var saved = localStorage.getItem('portfolio-theme');
+                    if (saved === 'dark' || saved === 'light') {
+                        return saved;
+                    }
+                    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        return 'dark';
+                    }
+                    return 'light';
+                }
+
+                function applyTheme(theme) {
+                    if (theme === 'dark') {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        document.body.classList.add('dark-theme');
+                    } else {
+                        document.documentElement.removeAttribute('data-theme');
+                        document.body.classList.remove('dark-theme');
+                    }
+                    localStorage.setItem('portfolio-theme', theme);
+
+                    if (themeToggleBtn) {
+                        var isDark = (theme === 'dark');
+                        themeToggleBtn.setAttribute('aria-label', isDark ? 'სინათლის (Light) თემაზე გადართვა' : 'ბნელ (Dark) თემაზე გადართვა');
+                        themeToggleBtn.setAttribute('title', isDark ? 'Light რეჟიმი' : 'Dark რეჟიმი');
+                    }
+                }
+
+                applyTheme(getStoredTheme());
+
+                if (themeToggleBtn) {
+                    themeToggleBtn.addEventListener('click', function () {
+                        var isDark = document.documentElement.getAttribute('data-theme') === 'dark' || document.body.classList.contains('dark-theme');
+                        applyTheme(isDark ? 'light' : 'dark');
+                    });
+                }
+
+                // 2. მობილური ბურგერ მენიუს მართვა
+                var burgerBtn = document.getElementById('burger-btn');
+                var mainNav = document.getElementById('main-nav');
+                var navLinks = document.querySelectorAll('#main-nav a');
+
+                if (burgerBtn && mainNav) {
+                    burgerBtn.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        toggleMobileNav();
+                    });
+
+                    burgerBtn.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            toggleMobileNav();
+                        }
+                    });
+
+                    function toggleMobileNav() {
+                        var isOpen = mainNav.classList.toggle('is-open');
+                        burgerBtn.classList.toggle('is-active', isOpen);
+                        burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                        burgerBtn.setAttribute('aria-label', isOpen ? 'ნავიგაციის მენიუს დახურვა' : 'ნავიგაციის მენიუს გახსნა');
+                    }
+
+                    function closeMobileNav() {
+                        if (mainNav.classList.contains('is-open')) {
+                            mainNav.classList.remove('is-open');
+                            burgerBtn.classList.remove('is-active');
+                            burgerBtn.setAttribute('aria-expanded', 'false');
+                            burgerBtn.setAttribute('aria-label', 'ნავიგაციის მენიუს გახსნა');
+                        }
+                    }
+
+                    navLinks.forEach(function (link) {
+                        link.addEventListener('click', function () {
+                            closeMobileNav();
+                        });
+                    });
+
+                    document.addEventListener('click', function (e) {
+                        if (!mainNav.contains(e.target) && !burgerBtn.contains(e.target)) {
+                            closeMobileNav();
+                        }
+                    });
+
+                    document.addEventListener('keydown', function (e) {
+                        if (e.key === 'Escape') {
+                            closeMobileNav();
+                        }
+                    });
+                }
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initPortfolio);
+            } else {
+                initPortfolio();
+            }
+        })();
+    </script>
 </body>
 </html>
