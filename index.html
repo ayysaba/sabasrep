@@ -893,6 +893,253 @@
         .btn-show-all:active {
             transform: translateY(0);
         }
+
+        /* ==========================================================================
+           14. თანამშრომლების სექცია (JSONPlaceholder API)
+           ========================================================================== */
+        .employees-controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        #employee-search {
+            flex: 1;
+            min-width: 220px;
+            margin-top: 0;
+        }
+
+        .btn-primary-action {
+            background-color: var(--accent-color);
+            color: var(--btn-text);
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.2s, transform 0.1s;
+            white-space: nowrap;
+        }
+
+        .btn-primary-action:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .add-employee-card {
+            background-color: var(--item-bg);
+            border: 1px solid var(--item-border);
+            border-left: 4px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 22px;
+            animation: slideDown 0.25s ease-out;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-bottom: 15px;
+        }
+
+        .form-grid p {
+            margin: 0;
+        }
+
+        .form-grid label {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--heading-color);
+        }
+
+        .btn-cancel {
+            background-color: var(--btn-secondary-bg);
+            color: var(--btn-secondary-text);
+        }
+
+        .employees-alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: slideDown 0.2s ease-out;
+        }
+
+        .employees-alert.success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+
+        [data-theme="dark"] .employees-alert.success,
+        body.dark-theme .employees-alert.success {
+            background-color: #1b3820;
+            color: #a5d6a7;
+            border-color: #2e7d32;
+        }
+
+        .employees-alert.info {
+            background-color: #e3f2fd;
+            color: #1565c0;
+            border: 1px solid #bbdefb;
+        }
+
+        [data-theme="dark"] .employees-alert.info,
+        body.dark-theme .employees-alert.info {
+            background-color: #1a2c3d;
+            color: #90caf9;
+            border-color: #1e4976;
+        }
+
+        .employees-loading {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-secondary);
+        }
+
+        .spinner {
+            width: 36px;
+            height: 36px;
+            margin: 0 auto 12px;
+            border: 3px solid var(--card-border);
+            border-top-color: var(--accent-color);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .employees-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 15px;
+        }
+
+        .employee-card {
+            background-color: var(--item-bg);
+            border: 1px solid var(--item-border);
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .employee-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+            border-color: var(--accent-color);
+        }
+
+        .employee-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .employee-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            color: var(--btn-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .employee-title h3 {
+            margin: 0;
+            font-size: 1.05rem;
+            line-height: 1.3;
+        }
+
+        .employee-username {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        .employee-details {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 14px 0;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .employee-details li {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            word-break: break-all;
+        }
+
+        .employee-details a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .employee-details a:hover {
+            text-decoration: underline;
+        }
+
+        .employee-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background-color: var(--card-border);
+            color: var(--text-primary);
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .employee-actions {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 10px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .btn-delete-emp {
+            background-color: transparent;
+            color: #c62828;
+            border: 1px solid #ef9a9a;
+            padding: 6px 12px;
+            font-size: 0.82rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        [data-theme="dark"] .btn-delete-emp,
+        body.dark-theme .btn-delete-emp {
+            color: #ef9a9a;
+            border-color: #893333;
+        }
+
+        .btn-delete-emp:hover {
+            background-color: #c62828;
+            color: #ffffff;
+            border-color: #c62828;
+        }
     </style>
 
     <!-- გარე CSS და JS ფაილები (თუ ცალკე ფაილებიც ატვირთულია) -->
@@ -949,6 +1196,7 @@
                 <li><a href="#about" class="nav-filter-btn" data-filter="about">ჩემ შესახებ</a></li>
                 <li><a href="#skills" class="nav-filter-btn" data-filter="skills">უნარები</a></li>
                 <li><a href="#projects" class="nav-filter-btn" data-filter="projects">პროექტები</a></li>
+                <li><a href="#employees" class="nav-filter-btn" data-filter="employees">თანამშრომლები</a></li>
                 <li><a href="#goals" class="nav-filter-btn" data-filter="goals">სასწავლო მიზნები</a></li>
                 <li><a href="#contact" class="nav-filter-btn" data-filter="contact">კონტაქტი</a></li>
             </ul>
@@ -965,11 +1213,12 @@
             <h2>ჩემ შესახებ</h2>
             <figure>
                 <img 
-                    src="https://i.scdn.co/image/ab67616d0000b27365bc1bfbb95ff5264f788839" 
+                    src="nle-choppa.jpg" 
                     alt="NLE Choppa - Top Shotta" 
                     width="200" 
                     height="200"
                     style="object-fit: cover;"
+                    onerror="this.onerror=null; this.src='https://i.scdn.co/image/ab67616d0000b27365bc1bfbb95ff5264f788839';"
                 >
                 <figcaption>NLE Choppa - Top Shotta</figcaption>
             </figure>
@@ -1067,7 +1316,70 @@
 
         <hr>
 
-        <!-- 4. სასწავლო მიზნების ცხრილი -->
+        <!-- 4. თანამშრომლების სექცია (JSONPlaceholder API: GET, POST, DELETE) -->
+        <section id="employees">
+            <h2>ჩვენი გუნდი / თანამშრომლები</h2>
+            <p>
+                თანამშრომელთა სია დინამიკურად იტვირთება <strong>JSONPlaceholder API</strong>-დან (HTTP <code>GET</code> მეთოდით).
+                ასევე ინტეგრირებულია ახლის დამატება (<code>POST</code>) და წაშლა (<code>DELETE</code>).
+            </p>
+
+            <!-- საძიებო ველი და დამატების ღილაკი -->
+            <div class="employees-controls">
+                <input type="text" id="employee-search" placeholder="მოძებნეთ თანამშრომელი სახელით, მეილით ან კომპანიით..." aria-label="თანამშრომლის ძებნა">
+                <button type="button" id="btn-toggle-add-form" class="btn-primary-action">+ თანამშრომლის დამატება (POST)</button>
+            </div>
+
+            <!-- ახალი თანამშრომლის დამატების ფორმა (HTTP POST) -->
+            <form id="add-employee-form" class="add-employee-card" style="display: none;">
+                <h3>ახალი თანამშრომლის დამატება (POST მეთოდი)</h3>
+                <p><small>ფორმა აგზავნის <code>POST</code> მოთხოვნას სერვერზე და ამატებს თანამშრომელს სიის თავში:</small></p>
+                
+                <div class="form-grid">
+                    <p>
+                        <label for="emp-name">სახელი და გვარი: *</label>
+                        <input type="text" id="emp-name" placeholder="მაგ: გიორგი ბერიძე" required>
+                    </p>
+                    <p>
+                        <label for="emp-email">ელ-ფოსტა: *</label>
+                        <input type="email" id="emp-email" placeholder="giorgi@example.com" required>
+                    </p>
+                    <p>
+                        <label for="emp-company">კომპანია / პოზიცია:</label>
+                        <input type="text" id="emp-company" placeholder="მაგ: Romaguera">
+                    </p>
+                    <p>
+                        <label for="emp-city">ქალაქი:</label>
+                        <input type="text" id="emp-city" placeholder="მაგ: თბილისი">
+                    </p>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="emp-submit-btn">დამატება (გაგზავნე POST)</button>
+                    <button type="button" id="btn-cancel-add" class="btn-cancel">გაუქმება</button>
+                </div>
+            </form>
+
+            <!-- სტატუსის / შეტყობინების ველი -->
+            <div id="employees-alert" class="employees-alert" style="display: none;" role="status"></div>
+
+            <!-- ლოუდერი მონაცემების ჩატვირთვისას -->
+            <div id="employees-loading" class="employees-loading">
+                <div class="spinner"></div>
+                <p>თანამშრომლების სია იტვირთება სერვერიდან...</p>
+            </div>
+
+            <!-- თანამშრომლების ბარათების ბადე -->
+            <div id="employees-grid" class="employees-grid"></div>
+
+            <div class="section-footer-nav" style="display: none;">
+                <button type="button" class="btn-show-all">← ყველა სექციის ჩვენება</button>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- 5. სასწავლო მიზნების ცხრილი -->
         <section id="goals">
             <h2>სასწავლო მიზნები და გეგმა</h2>
             
@@ -1124,7 +1436,7 @@
 
             <ul class="contact-info">
                 <li><strong>ელ-ფოსტა:</strong> <a href="mailto:saba.mchedlishvili@example.com">saba.mchedlishvili@example.com</a></li>
-                <li><strong>ტელეფონი:</strong> <a href="tel:+995599690991">+995 599 69 09 91 </a></li>
+                <li><strong>ტელეფონი:</strong> <a href="tel:+995599690991">+995 599 69 09 91</a></li>
                 <li><strong>GitHub:</strong> <a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com/sabamchedlishvili</a></li>
             </ul>
 
@@ -1364,7 +1676,7 @@
 
                     // ბრაუზერის მისამართის ჰეშის შემოწმება ჩატვირთვისას
                     var currentHash = window.location.hash ? window.location.hash.replace('#', '') : 'all';
-                    if (['about', 'skills', 'projects', 'goals', 'contact'].indexOf(currentHash) !== -1) {
+                    if (['about', 'skills', 'projects', 'employees', 'goals', 'contact'].indexOf(currentHash) !== -1) {
                         showSection(currentHash);
                     } else {
                         showSection('all');
@@ -1375,6 +1687,208 @@
                         var hash = window.location.hash ? window.location.hash.replace('#', '') : 'all';
                         showSection(hash);
                     });
+
+                    // ==========================================
+                    // 4. თანამშრომლების მართვა (JSONPlaceholder API: GET, POST, DELETE)
+                    // ==========================================
+                    var employeesLoaded = false;
+                    var employeesList = [];
+
+                    function escapeHtml(str) {
+                        if (!str) return '';
+                        return String(str)
+                            .replace(/&/g, '&amp;')
+                            .replace(/</g, '&lt;')
+                            .replace(/>/g, '&gt;')
+                            .replace(/"/g, '&quot;')
+                            .replace(/'/g, '&#039;');
+                    }
+
+                    function showEmployeeAlert(msg, type) {
+                        var alertBox = document.getElementById('employees-alert');
+                        if (!alertBox) return;
+                        alertBox.textContent = msg;
+                        alertBox.className = 'employees-alert ' + (type || 'info');
+                        alertBox.style.display = 'flex';
+                        setTimeout(function () {
+                            alertBox.style.display = 'none';
+                        }, 5000);
+                    }
+
+                    function loadEmployees() {
+                        if (employeesLoaded) return;
+                        var grid = document.getElementById('employees-grid');
+                        var loading = document.getElementById('employees-loading');
+                        if (!grid) return;
+
+                        // HTTP GET მეთოდი - მონაცემების წამოღება სერვერიდან
+                        fetch('https://jsonplaceholder.typicode.com/users')
+                            .then(function (response) {
+                                if (!response.ok) throw new Error('ქსელის შეცდომა');
+                                return response.json();
+                            })
+                            .then(function (users) {
+                                employeesList = users;
+                                employeesLoaded = true;
+                                if (loading) loading.style.display = 'none';
+                                renderEmployees(employeesList);
+                            })
+                            .catch(function (error) {
+                                if (loading) {
+                                    loading.innerHTML = '<p style="color: #c62828;">ვერ მოხერხდა თანამშრომლების ჩატვირთვა. გთხოვთ შეამოწმოთ ინტერნეტის კავშირი.</p>';
+                                }
+                            });
+                    }
+
+                    function renderEmployees(users) {
+                        var grid = document.getElementById('employees-grid');
+                        if (!grid) return;
+                        grid.innerHTML = '';
+
+                        if (!users || users.length === 0) {
+                            grid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--text-secondary); padding: 25px;">თანამშრომელი ვერ მოიძებნა.</p>';
+                            return;
+                        }
+
+                        users.forEach(function (user) {
+                            var initials = user.name ? user.name.split(' ').map(function(n){ return n[0]; }).slice(0, 2).join('') : 'U';
+                            var companyName = (user.company && user.company.name) ? user.company.name : 'დამოუკიდებელი';
+                            var city = (user.address && user.address.city) ? user.address.city : '';
+
+                            var card = document.createElement('div');
+                            card.className = 'employee-card';
+                            card.setAttribute('data-id', user.id);
+                            card.innerHTML = 
+                                '<div class="employee-header">' +
+                                    '<div class="employee-avatar">' + initials + '</div>' +
+                                    '<div class="employee-title">' +
+                                        '<h3>' + escapeHtml(user.name) + '</h3>' +
+                                        '<span class="employee-username">@' + escapeHtml(user.username || 'user') + '</span>' +
+                                    '</div>' +
+                                '</div>' +
+                                '<ul class="employee-details">' +
+                                    '<li><strong>კომპანია:</strong> <span class="employee-badge">' + escapeHtml(companyName) + '</span></li>' +
+                                    '<li><strong>ელ-ფოსტა:</strong> <a href="mailto:' + escapeHtml(user.email) + '">' + escapeHtml(user.email) + '</a></li>' +
+                                    (user.phone ? '<li><strong>ტელ:</strong> ' + escapeHtml(user.phone) + '</li>' : '') +
+                                    (city ? '<li><strong>ქალაქი:</strong> ' + escapeHtml(city) + '</li>' : '') +
+                                '</ul>' +
+                                '<div class="employee-actions">' +
+                                    '<button type="button" class="btn-delete-emp" data-id="' + user.id + '" title="თანამშრომლის წაშლა (HTTP DELETE)">წაშლა (DELETE)</button>' +
+                                '</div>';
+
+                            grid.appendChild(card);
+                        });
+
+                        grid.querySelectorAll('.btn-delete-emp').forEach(function (btn) {
+                            btn.addEventListener('click', function () {
+                                var id = btn.getAttribute('data-id');
+                                deleteEmployee(id);
+                            });
+                        });
+                    }
+
+                    // HTTP DELETE მეთოდი
+                    function deleteEmployee(id) {
+                        if (!confirm('ნამდვილად გსურთ ამ თანამშრომლის წაშლა?')) return;
+
+                        fetch('https://jsonplaceholder.typicode.com/users/' + id, {
+                            method: 'DELETE'
+                        })
+                        .then(function () {
+                            employeesList = employeesList.filter(function (u) { return String(u.id) !== String(id); });
+                            renderEmployees(employeesList);
+                            showEmployeeAlert('თანამშრომელი წაიშალა (HTTP DELETE მოთხოვნა გაიგზავნა წარმატებით)!', 'info');
+                        })
+                        .catch(function () {
+                            showEmployeeAlert('წაშლისას დაფიქსირდა შეცდომა.', 'error');
+                        });
+                    }
+
+                    // HTTP POST მეთოდი
+                    var addForm = document.getElementById('add-employee-form');
+                    var toggleAddBtn = document.getElementById('btn-toggle-add-form');
+                    var cancelAddBtn = document.getElementById('btn-cancel-add');
+
+                    if (toggleAddBtn && addForm) {
+                        toggleAddBtn.addEventListener('click', function () {
+                            var isHidden = addForm.style.display === 'none';
+                            addForm.style.display = isHidden ? 'block' : 'none';
+                            toggleAddBtn.textContent = isHidden ? '✕ ფორმის დახურვა' : '+ თანამშრომლის დამატება (POST)';
+                        });
+                    }
+
+                    if (cancelAddBtn && addForm) {
+                        cancelAddBtn.addEventListener('click', function () {
+                            addForm.style.display = 'none';
+                            if (toggleAddBtn) toggleAddBtn.textContent = '+ თანამშრომლის დამატება (POST)';
+                        });
+                    }
+
+                    if (addForm) {
+                        addForm.addEventListener('submit', function (e) {
+                            e.preventDefault();
+                            var submitBtn = document.getElementById('emp-submit-btn');
+                            if (submitBtn) submitBtn.disabled = true;
+
+                            var nameVal = document.getElementById('emp-name').value.trim();
+                            var emailVal = document.getElementById('emp-email').value.trim();
+                            var compVal = document.getElementById('emp-company').value.trim() || 'Tech Studio';
+                            var cityVal = document.getElementById('emp-city').value.trim() || 'თბილისი';
+
+                            var newEmployeeData = {
+                                name: nameVal,
+                                username: nameVal.toLowerCase().replace(/\s+/g, '_'),
+                                email: emailVal,
+                                company: { name: compVal },
+                                address: { city: cityVal }
+                            };
+
+                            fetch('https://jsonplaceholder.typicode.com/users', {
+                                method: 'POST',
+                                body: JSON.stringify(newEmployeeData),
+                                headers: {
+                                    'Content-type': 'application/json; charset=UTF-8',
+                                },
+                            })
+                            .then(function (response) {
+                                return response.json();
+                            })
+                            .then(function (createdUser) {
+                                createdUser.id = createdUser.id || Date.now();
+                                employeesList.unshift(createdUser);
+                                renderEmployees(employeesList);
+
+                                addForm.reset();
+                                addForm.style.display = 'none';
+                                if (toggleAddBtn) toggleAddBtn.textContent = '+ თანამშრომლის დამატება (POST)';
+                                showEmployeeAlert('ახალი თანამშრომელი დაემატა (HTTP POST მოთხოვნით)!', 'success');
+                            })
+                            .catch(function () {
+                                showEmployeeAlert('დამატებისას დაფიქსირდა შეცდომა.', 'error');
+                            })
+                            .finally(function () {
+                                if (submitBtn) submitBtn.disabled = false;
+                            });
+                        });
+                    }
+
+                    // Real-time ძებნა
+                    var searchInput = document.getElementById('employee-search');
+                    if (searchInput) {
+                        searchInput.addEventListener('input', function (e) {
+                            var q = e.target.value.toLowerCase().trim();
+                            var filtered = employeesList.filter(function (u) {
+                                var n = u.name && u.name.toLowerCase().includes(q);
+                                var em = u.email && u.email.toLowerCase().includes(q);
+                                var co = u.company && u.company.name && u.company.name.toLowerCase().includes(q);
+                                return n || em || co;
+                            });
+                            renderEmployees(filtered);
+                        });
+                    }
+
+                    // თანამშრომლების სიის ავტომატური წამოღება
+                    loadEmployees();
 
                     document.addEventListener('click', function (e) {
                         if (!mainNav.contains(e.target) && !burgerBtn.contains(e.target)) {
